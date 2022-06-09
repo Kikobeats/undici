@@ -53,6 +53,7 @@
     "test:tap": "tap test/*.js test/diagnostics-channel/*.js",
     "test:tdd": "tap test/*.js test/diagnostics-channel/*.js -w",
     "test:typescript": "tsd",
+    "test:xmlhttprequest": "node scripts/verifyVersion.js 16 || tap test/xmlhttprequest/*.js",
     "coverage": "nyc --reporter=text --reporter=html npm run test",
     "coverage:ci": "nyc --reporter=lcov npm run test",
     "bench": "PORT=3042 concurrently -k -s first npm:bench:server npm:bench:run",
@@ -113,7 +114,8 @@
     "compilerOptions": {
       "esModuleInterop": true,
       "lib": [
-        "esnext"
+        "esnext",
+        "dom"
       ]
     }
   },

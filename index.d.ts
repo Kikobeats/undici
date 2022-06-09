@@ -14,6 +14,7 @@ import ProxyAgent = require('./types/proxy-agent')
 import { request, pipeline, stream, connect, upgrade } from './types/api'
 
 export * from './types/fetch'
+export * from './types/xmlhttprequest'
 export * from './types/file'
 export * from './types/formdata'
 export * from './types/diagnostics-channel'
@@ -44,4 +45,5 @@ declare namespace Undici {
   var MockAgent: typeof import('./types/mock-agent');
   var mockErrors: typeof import('./types/mock-errors');
   var fetch: typeof import('./types/fetch').fetch;
+  var XMLHttpRequest: typeof import('./types/xmlhttprequest').XMLHttpRequest
 }

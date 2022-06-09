@@ -1,11 +1,21 @@
+/// <reference types="node" />
 // Copied from typescript's DOM types.
 
-interface XMLHttpRequestEventMap extends XMLHttpRequestEventTargetEventMap {
+export interface ProgressEvent<T extends EventTarget = EventTarget> extends Event {
+  readonly lengthComputable: boolean;
+  readonly loaded: number;
+  readonly target: T | null;
+  readonly total: number;
+}
+
+export interface XMLHttpRequestEventMap extends XMLHttpRequestEventTargetEventMap {
   readystatechange: Event
 }
 
+type Document = never
+
 /** Use XMLHttpRequest (XHR) objects to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing. */
-interface XMLHttpRequest extends XMLHttpRequestEventTarget {
+export interface XMLHttpRequest extends XMLHttpRequestEventTarget {
   onreadystatechange: ((this: XMLHttpRequest, ev: Event) => any) | null
   /** Returns client's state. */
   readonly readyState: number
@@ -114,7 +124,7 @@ interface XMLHttpRequest extends XMLHttpRequestEventTarget {
   ): void
 }
 
-declare var XMLHttpRequest: {
+export declare var XMLHttpRequest: {
   prototype: XMLHttpRequest
   new(): XMLHttpRequest
   readonly DONE: number
@@ -124,7 +134,7 @@ declare var XMLHttpRequest: {
   readonly UNSENT: number
 }
 
-interface XMLHttpRequestEventTargetEventMap {
+export interface XMLHttpRequestEventTargetEventMap {
   abort: ProgressEvent<XMLHttpRequestEventTarget>
   error: ProgressEvent<XMLHttpRequestEventTarget>
   load: ProgressEvent<XMLHttpRequestEventTarget>
@@ -134,7 +144,7 @@ interface XMLHttpRequestEventTargetEventMap {
   timeout: ProgressEvent<XMLHttpRequestEventTarget>
 }
 
-interface XMLHttpRequestEventTarget extends EventTarget {
+export interface XMLHttpRequestEventTarget extends EventTarget {
   onabort: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null
   onerror: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null
   onload: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null
@@ -164,12 +174,12 @@ interface XMLHttpRequestEventTarget extends EventTarget {
   ): void
 }
 
-declare var XMLHttpRequestEventTarget: {
+export declare var XMLHttpRequestEventTarget: {
   prototype: XMLHttpRequestEventTarget
   new(): XMLHttpRequestEventTarget
 }
 
-interface XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
+export interface XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
   addEventListener<K extends keyof XMLHttpRequestEventTargetEventMap>(
     type: K,
     listener: (this: XMLHttpRequestUpload, ev: XMLHttpRequestEventTargetEventMap[K]) => any,
@@ -192,7 +202,7 @@ interface XMLHttpRequestUpload extends XMLHttpRequestEventTarget {
   ): void
 }
 
-declare var XMLHttpRequestUpload: {
+export declare var XMLHttpRequestUpload: {
   prototype: XMLHttpRequestUpload
   new(): XMLHttpRequestUpload
 }
