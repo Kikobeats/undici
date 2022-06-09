@@ -49,6 +49,8 @@ test('parallel fetch with the same AbortController works as expected', async (t)
     return a
   }, { resolved: [], rejected: [] })
 
+  for (let i = 0; i < 25; i++) console.log({ res: resolved.length, rej: rejected.length })
+
   t.equal(rejected.length, 9) // out of 10 requests, only 1 should succeed
   t.equal(resolved.length, 1)
 
